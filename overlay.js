@@ -115,6 +115,7 @@ class VCTOverlayRenderer {
         if (this.state.game_flow && this.state.game_flow.length > 0) {
             this.state.game_flow.forEach(item => {
                 const mapName = item.map || 'ascent';
+                const label = item.label !== undefined ? item.label : null;
                 switch (item.state) {
                     case 'over':
                         mapArray.push(['over', this.formatMapOverPanel(
@@ -122,7 +123,8 @@ class VCTOverlayRenderer {
                             item.team_2_score || 0,
                             mapName,
                             team1Icon,
-                            team2Icon
+                            team2Icon,
+                            label
                         )]);
                         break;
                     case 'current':
@@ -130,7 +132,8 @@ class VCTOverlayRenderer {
                             mapName,
                             item.map_pick,
                             team1Icon,
-                            team2Icon
+                            team2Icon,
+                            label
                         )]);
                         break;
                     case 'upcomming':
@@ -138,18 +141,20 @@ class VCTOverlayRenderer {
                             mapName,
                             item.map_pick,
                             team1Icon,
-                            team2Icon
+                            team2Icon,
+                            label
                         )]);
                         break;
                     case 'decider':
-                        mapArray.push(['decider', this.formatMapDeciderPanel(mapName)]);
+                        mapArray.push(['decider', this.formatMapDeciderPanel(mapName, label)]);
                         break;
                     default:
                         mapArray.push(['upcomming', this.formatMapUpcommingPanel(
                             mapName,
                             item.map_pick,
                             team1Icon,
-                            team2Icon
+                            team2Icon,
+                            label
                         )]);
                 }
             });
@@ -170,7 +175,7 @@ class VCTOverlayRenderer {
         }
     }
 
-    formatMapOverPanel(t1Score, t2Score, map, t1Icon, t2Icon) {
+    formatMapOverPanel(t1Score, t2Score, map, t1Icon, t2Icon, customLabel) {
         let scoreString = `<img class="team-select-image" src="${t1Icon}" onerror="this.style.display='none'"><span class="information-text">${t1Score}:${t2Score}</span><img class="team-select-image" src="${t2Icon}" onerror="this.style.display='none'">`;
         if (t2Score > t1Score) {
             scoreString = `<img class="team-select-image" src="${t2Icon}" onerror="this.style.display='none'"><span class="information-text">${t2Score}:${t1Score}</span><img class="team-select-image" src="${t1Icon}" onerror="this.style.display='none'">`;
@@ -181,27 +186,30 @@ class VCTOverlayRenderer {
                 </div>`;
     }
 
-    formatMapCurrentPanel(map, team_selected, t1Icon, t2Icon) {
+    formatMapCurrentPanel(map, team_selected, t1Icon, t2Icon, customLabel) {
+        let labelText = (customLabel !== null && customLabel !== undefined) ? customLabel : 'CURRENT:';
         let imageLink = (team_selected === 'team_1') ? t1Icon : (team_selected === 'team_2' ? t2Icon : '');
         return `<div class="map-select-information-container status-current">
-                    <span class="information-text">CURRENT:</span>
+                    ${labelText !== '' ? `<span class="information-text">${labelText}</span>` : ''}
                     <span class="map-text">${map.toUpperCase()}</span>
                     ${imageLink !== '' ? `<img class="team-select-image" src="${imageLink}" onerror="this.style.display='none'">` : ''}
                 </div>`;
     }
 
-    formatMapUpcommingPanel(map, team_selected, t1Icon, t2Icon) {
+    formatMapUpcommingPanel(map, team_selected, t1Icon, t2Icon, customLabel) {
+        let labelText = (customLabel !== null && customLabel !== undefined) ? customLabel : 'NEXT:';
         let imageLink = (team_selected === 'team_1') ? t1Icon : (team_selected === 'team_2' ? t2Icon : '');
         return `<div class="map-select-information-container">
-                    <span class="information-text">NEXT:</span>
+                    ${labelText !== '' ? `<span class="information-text">${labelText}</span>` : ''}
                     <span class="map-text">${map.toUpperCase()}</span>
                     ${imageLink !== '' ? `<img class="team-select-image" src="${imageLink}" onerror="this.style.display='none'">` : ''}
                 </div>`;
     }
 
-    formatMapDeciderPanel(map) {
+    formatMapDeciderPanel(map, customLabel) {
+        let labelText = (customLabel !== null && customLabel !== undefined) ? customLabel : 'NEXT:';
         return `<div class="map-select-information-container status-decider">
-                    <span class="information-text">DECIDER:</span>
+                    ${labelText !== '' ? `<span class="information-text">${labelText}</span>` : ''}
                     <span class="map-text">${map.toUpperCase()}</span>
                 </div>`;
     }

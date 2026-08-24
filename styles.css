@@ -625,9 +625,9 @@ select.form-control option {
     border-radius: 10px;
     padding: 14px 18px;
     display: grid;
-    grid-template-columns: 40px 1.5fr 1fr 1.2fr 1fr auto;
+    grid-template-columns: 35px 1.2fr 1fr 1.1fr 1.2fr auto;
     align-items: center;
-    gap: 15px;
+    gap: 12px;
     transition: all 0.25s ease;
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }

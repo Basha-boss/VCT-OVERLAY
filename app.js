@@ -132,11 +132,13 @@ class VCTMapScheduleApp {
         this.team1NameInput = document.getElementById('team1-name');
         this.team1TagInput = document.getElementById('team1-tag');
         this.team1IconInput = document.getElementById('team1-icon');
+        this.team1FileInput = document.getElementById('team1-file');
         this.team1LogoPreview = document.getElementById('team1-logo-preview');
 
         this.team2NameInput = document.getElementById('team2-name');
         this.team2TagInput = document.getElementById('team2-tag');
         this.team2IconInput = document.getElementById('team2-icon');
+        this.team2FileInput = document.getElementById('team2-file');
         this.team2LogoPreview = document.getElementById('team2-logo-preview');
 
         // Match Format
@@ -165,10 +167,27 @@ class VCTMapScheduleApp {
             this.saveState();
         });
         this.team1IconInput.addEventListener('input', (e) => {
-            this.state.team_1.icon = e.target.value || DEFAULT_BLUE_ICON;
-            this.team1LogoPreview.src = this.state.team_1.icon;
+            this.state.team_1.icon = e.target.value;
+            this.team1LogoPreview.src = e.target.value || DEFAULT_BLUE_ICON;
             this.saveState();
         });
+        if (this.team1FileInput) {
+            this.team1FileInput.addEventListener('change', (e) => {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = (event) => {
+                        const dataUrl = event.target.result;
+                        this.team1IconInput.value = dataUrl;
+                        this.state.team_1.icon = dataUrl;
+                        this.team1LogoPreview.src = dataUrl;
+                        this.saveState();
+                        this.showToast('Team 1 logo uploaded!');
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        }
 
         // Team 2 Inputs
         this.team2NameInput.addEventListener('input', (e) => {
@@ -180,10 +199,27 @@ class VCTMapScheduleApp {
             this.saveState();
         });
         this.team2IconInput.addEventListener('input', (e) => {
-            this.state.team_2.icon = e.target.value || DEFAULT_RED_ICON;
-            this.team2LogoPreview.src = this.state.team_2.icon;
+            this.state.team_2.icon = e.target.value;
+            this.team2LogoPreview.src = e.target.value || DEFAULT_RED_ICON;
             this.saveState();
         });
+        if (this.team2FileInput) {
+            this.team2FileInput.addEventListener('change', (e) => {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = (event) => {
+                        const dataUrl = event.target.result;
+                        this.team2IconInput.value = dataUrl;
+                        this.state.team_2.icon = dataUrl;
+                        this.team2LogoPreview.src = dataUrl;
+                        this.saveState();
+                        this.showToast('Team 2 logo uploaded!');
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        }
 
         // Match Format Switcher
         this.matchFormatSelect.addEventListener('change', (e) => {
@@ -336,17 +372,31 @@ class VCTMapScheduleApp {
     }
 
     renderTeamInputs() {
-        this.team1NameInput.value = this.state.team_1.name || '';
-        this.team1TagInput.value = this.state.team_1.tag || '';
-        this.team1IconInput.value = this.state.team_1.icon || '';
+        if (document.activeElement !== this.team1NameInput) {
+            this.team1NameInput.value = this.state.team_1.name || '';
+        }
+        if (document.activeElement !== this.team1TagInput) {
+            this.team1TagInput.value = this.state.team_1.tag || '';
+        }
+        if (document.activeElement !== this.team1IconInput) {
+            this.team1IconInput.value = this.state.team_1.icon || '';
+        }
         this.team1LogoPreview.src = this.state.team_1.icon || DEFAULT_BLUE_ICON;
 
-        this.team2NameInput.value = this.state.team_2.name || '';
-        this.team2TagInput.value = this.state.team_2.tag || '';
-        this.team2IconInput.value = this.state.team_2.icon || '';
+        if (document.activeElement !== this.team2NameInput) {
+            this.team2NameInput.value = this.state.team_2.name || '';
+        }
+        if (document.activeElement !== this.team2TagInput) {
+            this.team2TagInput.value = this.state.team_2.tag || '';
+        }
+        if (document.activeElement !== this.team2IconInput) {
+            this.team2IconInput.value = this.state.team_2.icon || '';
+        }
         this.team2LogoPreview.src = this.state.team_2.icon || DEFAULT_RED_ICON;
 
-        this.matchFormatSelect.value = this.state.match_format || 'bo3';
+        if (document.activeElement !== this.matchFormatSelect) {
+            this.matchFormatSelect.value = this.state.match_format || 'bo3';
+        }
     }
 
     renderMapFlowEditor() {
@@ -373,9 +423,9 @@ class VCTMapScheduleApp {
                 <div>
                     <label class="form-label">Status</label>
                     <select class="form-control slot-state-select" data-index="${index}">
-                        <option value="over" ${slot.state === 'over' ? 'selected' : ''}>FINISHED (OVER)</option>
-                        <option value="current" ${slot.state === 'current' ? 'selected' : ''}>CURRENT MAP</option>
-                        <option value="upcomming" ${slot.state === 'upcomming' ? 'selected' : ''}>NEXT / UPCOMING</option>
+                        <option value="over" ${slot.state === 'over' ? 'selected' : ''}>FINISHED</option>
+                        <option value="current" ${slot.state === 'current' ? 'selected' : ''}>CURRENT</option>
+                        <option value="upcomming" ${slot.state === 'upcomming' ? 'selected' : ''}>UPCOMING</option>
                         <option value="decider" ${slot.state === 'decider' ? 'selected' : ''}>DECIDER</option>
                     </select>
                 </div>
@@ -384,7 +434,7 @@ class VCTMapScheduleApp {
                     <select class="form-control slot-pick-select" data-index="${index}">
                         <option value="team_1" ${slot.map_pick === 'team_1' ? 'selected' : ''}>${this.state.team_1.tag || 'TEAM 1'}</option>
                         <option value="team_2" ${slot.map_pick === 'team_2' ? 'selected' : ''}>${this.state.team_2.tag || 'TEAM 2'}</option>
-                        <option value="decider" ${slot.map_pick === 'decider' ? 'selected' : ''}>DECIDER / REMAINING</option>
+                        <option value="decider" ${slot.map_pick === 'decider' ? 'selected' : ''}>DECIDER</option>
                     </select>
                 </div>
                 <div>
@@ -470,6 +520,7 @@ class VCTMapScheduleApp {
         if (this.state.game_flow && this.state.game_flow.length > 0) {
             this.state.game_flow.forEach(item => {
                 const mapName = item.map || 'ascent';
+                const label = item.label !== undefined ? item.label : null;
                 switch (item.state) {
                     case 'over':
                         mapArray.push(['over', this.formatMapOverPanel(
@@ -477,7 +528,8 @@ class VCTMapScheduleApp {
                             item.team_2_score || 0,
                             mapName,
                             team1Icon,
-                            team2Icon
+                            team2Icon,
+                            label
                         )]);
                         break;
                     case 'current':
@@ -485,7 +537,8 @@ class VCTMapScheduleApp {
                             mapName,
                             item.map_pick,
                             team1Icon,
-                            team2Icon
+                            team2Icon,
+                            label
                         )]);
                         break;
                     case 'upcomming':
@@ -493,18 +546,20 @@ class VCTMapScheduleApp {
                             mapName,
                             item.map_pick,
                             team1Icon,
-                            team2Icon
+                            team2Icon,
+                            label
                         )]);
                         break;
                     case 'decider':
-                        mapArray.push(['decider', this.formatMapDeciderPanel(mapName)]);
+                        mapArray.push(['decider', this.formatMapDeciderPanel(mapName, label)]);
                         break;
                     default:
                         mapArray.push(['upcomming', this.formatMapUpcommingPanel(
                             mapName,
                             item.map_pick,
                             team1Icon,
-                            team2Icon
+                            team2Icon,
+                            label
                         )]);
                 }
             });
@@ -527,7 +582,7 @@ class VCTMapScheduleApp {
         }
     }
 
-    formatMapOverPanel(t1Score, t2Score, map, t1Icon, t2Icon) {
+    formatMapOverPanel(t1Score, t2Score, map, t1Icon, t2Icon, customLabel) {
         let scoreString = `<img class="team-select-image" src="${t1Icon}" onerror="this.style.display='none'"><span class="information-text">${t1Score}:${t2Score}</span><img class="team-select-image" src="${t2Icon}" onerror="this.style.display='none'">`;
         if (t2Score > t1Score) {
             scoreString = `<img class="team-select-image" src="${t2Icon}" onerror="this.style.display='none'"><span class="information-text">${t2Score}:${t1Score}</span><img class="team-select-image" src="${t1Icon}" onerror="this.style.display='none'">`;
@@ -538,27 +593,30 @@ class VCTMapScheduleApp {
                 </div>`;
     }
 
-    formatMapCurrentPanel(map, team_selected, t1Icon, t2Icon) {
+    formatMapCurrentPanel(map, team_selected, t1Icon, t2Icon, customLabel) {
+        let labelText = (customLabel !== null && customLabel !== undefined) ? customLabel : 'CURRENT:';
         let imageLink = (team_selected === 'team_1') ? t1Icon : (team_selected === 'team_2' ? t2Icon : '');
         return `<div class="map-select-information-container status-current">
-                    <span class="information-text">CURRENT:</span>
+                    ${labelText !== '' ? `<span class="information-text">${labelText}</span>` : ''}
                     <span class="map-text">${map.toUpperCase()}</span>
                     ${imageLink !== '' ? `<img class="team-select-image" src="${imageLink}" onerror="this.style.display='none'">` : ''}
                 </div>`;
     }
 
-    formatMapUpcommingPanel(map, team_selected, t1Icon, t2Icon) {
+    formatMapUpcommingPanel(map, team_selected, t1Icon, t2Icon, customLabel) {
+        let labelText = (customLabel !== null && customLabel !== undefined) ? customLabel : 'NEXT:';
         let imageLink = (team_selected === 'team_1') ? t1Icon : (team_selected === 'team_2' ? t2Icon : '');
         return `<div class="map-select-information-container">
-                    <span class="information-text">NEXT:</span>
+                    ${labelText !== '' ? `<span class="information-text">${labelText}</span>` : ''}
                     <span class="map-text">${map.toUpperCase()}</span>
                     ${imageLink !== '' ? `<img class="team-select-image" src="${imageLink}" onerror="this.style.display='none'">` : ''}
                 </div>`;
     }
 
-    formatMapDeciderPanel(map) {
+    formatMapDeciderPanel(map, customLabel) {
+        let labelText = (customLabel !== null && customLabel !== undefined) ? customLabel : 'NEXT:';
         return `<div class="map-select-information-container status-decider">
-                    <span class="information-text">DECIDER:</span>
+                    ${labelText !== '' ? `<span class="information-text">${labelText}</span>` : ''}
                     <span class="map-text">${map.toUpperCase()}</span>
                 </div>`;
     }
