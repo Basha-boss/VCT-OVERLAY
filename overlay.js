@@ -171,9 +171,9 @@ class VCTOverlayRenderer {
     }
 
     formatMapOverPanel(t1Score, t2Score, map, t1Icon, t2Icon) {
-        let scoreString = `<img class="team-select-image" src="${t1Icon}"><span class="information-text">${t1Score}:${t2Score}</span><img class="team-select-image" src="${t2Icon}">`;
+        let scoreString = `<img class="team-select-image" src="${t1Icon}" onerror="this.style.display='none'"><span class="information-text">${t1Score}:${t2Score}</span><img class="team-select-image" src="${t2Icon}" onerror="this.style.display='none'">`;
         if (t2Score > t1Score) {
-            scoreString = `<img class="team-select-image" src="${t2Icon}"><span class="information-text">${t2Score}:${t1Score}</span><img class="team-select-image" src="${t1Icon}">`;
+            scoreString = `<img class="team-select-image" src="${t2Icon}" onerror="this.style.display='none'"><span class="information-text">${t2Score}:${t1Score}</span><img class="team-select-image" src="${t1Icon}" onerror="this.style.display='none'">`;
         }
         return `<div class="map-select-information-container status-over">
                     <span class="map-text">${map.toUpperCase()}</span>
@@ -186,7 +186,7 @@ class VCTOverlayRenderer {
         return `<div class="map-select-information-container status-current">
                     <span class="information-text">CURRENT:</span>
                     <span class="map-text">${map.toUpperCase()}</span>
-                    ${imageLink !== '' ? `<img class="team-select-image" src="${imageLink}">` : ''}
+                    ${imageLink !== '' ? `<img class="team-select-image" src="${imageLink}" onerror="this.style.display='none'">` : ''}
                 </div>`;
     }
 
@@ -195,7 +195,7 @@ class VCTOverlayRenderer {
         return `<div class="map-select-information-container">
                     <span class="information-text">NEXT:</span>
                     <span class="map-text">${map.toUpperCase()}</span>
-                    ${imageLink !== '' ? `<img class="team-select-image" src="${imageLink}">` : ''}
+                    ${imageLink !== '' ? `<img class="team-select-image" src="${imageLink}" onerror="this.style.display='none'">` : ''}
                 </div>`;
     }
 

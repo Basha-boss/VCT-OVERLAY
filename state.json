@@ -1,0 +1,36 @@
+{
+  "match_format": "bo3",
+  "team_1": {
+    "name": "EDWARD GAMING",
+    "tag": "EDG",
+    "icon": "https://api.iconify.design/mdi:sword-cross.svg?color=%23ffffff"
+  },
+  "team_2": {
+    "name": "FNATIC",
+    "tag": "FNC",
+    "icon": "https://api.iconify.design/simple-icons:fnatic.svg?color=%23ff5900"
+  },
+  "game_flow": [
+    {
+      "map": "bind",
+      "state": "over",
+      "map_pick": "team_1",
+      "team_1_score": 13,
+      "team_2_score": 11
+    },
+    {
+      "map": "ascent",
+      "state": "current",
+      "map_pick": "team_2",
+      "team_1_score": 0,
+      "team_2_score": 0
+    },
+    {
+      "map": "lotus",
+      "state": "decider",
+      "map_pick": "decider",
+      "team_1_score": 0,
+      "team_2_score": 0
+    }
+  ]
+}
