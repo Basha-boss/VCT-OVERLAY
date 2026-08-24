@@ -38,6 +38,8 @@ body.overlay-mode {
     background-color: transparent !important;
     background: transparent !important;
     overflow: hidden;
+    margin: 0;
+    padding: 0;
 }
 
 /* App Header */
@@ -163,7 +165,7 @@ body.overlay-mode {
     min-height: 160px;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     position: relative;
     border: 1px dashed rgba(255, 255, 255, 0.12);
@@ -187,7 +189,7 @@ body.overlay-mode {
 /* VCT Schedule Overlay Component */
 .vct-schedule-wrapper {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     width: 100%;
 }
 
