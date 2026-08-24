@@ -1,0 +1,14 @@
+{
+  "name": "vct-map-schedule-manual",
+  "version": "1.0.0",
+  "description": "VCT Map Schedule & Flow Manual Overlay Controller",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "ws": "^8.16.0"
+  }
+}

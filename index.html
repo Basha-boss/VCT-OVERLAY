@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VCT Map Schedule & Flow - Control Suite</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+</head>
+<body>
+    <!-- App Header -->
+    <header class="app-header">
+        <div class="brand-container">
+            <div class="brand-logo">V</div>
+            <div class="brand-title">
+                <h1>VCT Map Schedule & Flow</h1>
+                <p>Manual Broadcast Control Suite & Live Overlay</p>
+            </div>
+        </div>
+        <div class="header-actions">
+            <button class="btn btn-secondary" id="btn-open-overlay-window">
+                <span>↗ Open Clean Overlay</span>
+            </button>
+            <button class="btn btn-primary" id="btn-copy-overlay-url">
+                <span>📋 Copy OBS Link</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="app-layout">
+        
+        <!-- Live Broadcast Preview Stage -->
+        <section class="card preview-stage-card">
+            <div class="card-header">
+                <div class="card-title">
+                    <i>●</i> Live Overlay Preview
+                </div>
+                <div style="font-size: 12px; color: var(--text_secondary);">
+                    Updates instantly across all OBS browser windows
+                </div>
+            </div>
+            
+            <div class="preview-box">
+                <div class="preview-badge">LIVE BROADCAST BANNER</div>
+                <div class="vct-schedule-wrapper">
+                    <div class="flex map-select-container" id="upcomming-maps">
+                        <!-- VCT ANGLED BANNER TABS RENDER HERE -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Action Bar -->
+        <section class="quick-actions-bar">
+            <button class="btn btn-primary" id="btn-advance-map">
+                <span>▶ Advance to Next Map</span>
+            </button>
+            <button class="btn btn-secondary" id="btn-swap-teams">
+                <span>⇄ Swap Teams (T1 / T2)</span>
+            </button>
+            <button class="btn btn-secondary" id="btn-reset-match">
+                <span>↺ Reset Match</span>
+            </button>
+        </section>
+
+        <!-- Control Panel Grid -->
+        <div class="control-grid">
+
+            <!-- Team Setup Panel -->
+            <section class="card">
+                <div class="card-header">
+                    <div class="card-title">
+                        <span>🛡 Team Setup</span>
+                    </div>
+                </div>
+
+                <div class="team-setup-container">
+                    
+                    <!-- Team 1 -->
+                    <div class="team-box">
+                        <div class="team-header">
+                            <img id="team1-logo-preview" class="team-preview-logo" src="" alt="T1 Logo">
+                            <div style="font-weight: 700; color: var(--vct_cyan);">TEAM 1 (BLUE)</div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Team Name</label>
+                            <input type="text" id="team1-name" class="form-control" placeholder="SENTINELS">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Tag / Abbr</label>
+                            <input type="text" id="team1-tag" class="form-control" placeholder="SEN" maxlength="5">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Icon URL</label>
+                            <input type="text" id="team1-icon" class="form-control" placeholder="https://...">
+                        </div>
+                        <div>
+                            <label class="form-label">Presets</label>
+                            <div class="preset-pills">
+                                <span class="preset-pill" data-team="SEN" data-target="team1">SEN</span>
+                                <span class="preset-pill" data-team="FNC" data-target="team1">FNC</span>
+                                <span class="preset-pill" data-team="PRX" data-target="team1">PRX</span>
+                                <span class="preset-pill" data-team="LEV" data-target="team1">LEV</span>
+                                <span class="preset-pill" data-team="TH" data-target="team1">TH</span>
+                                <span class="preset-pill" data-team="EDG" data-target="team1">EDG</span>
+                                <span class="preset-pill" data-team="GEN" data-target="team1">GEN</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Team 2 -->
+                    <div class="team-box">
+                        <div class="team-header">
+                            <img id="team2-logo-preview" class="team-preview-logo" src="" alt="T2 Logo">
+                            <div style="font-weight: 700; color: var(--vct_red);">TEAM 2 (RED)</div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Team Name</label>
+                            <input type="text" id="team2-name" class="form-control" placeholder="FNATIC">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Tag / Abbr</label>
+                            <input type="text" id="team2-tag" class="form-control" placeholder="FNC" maxlength="5">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Icon URL</label>
+                            <input type="text" id="team2-icon" class="form-control" placeholder="https://...">
+                        </div>
+                        <div>
+                            <label class="form-label">Presets</label>
+                            <div class="preset-pills">
+                                <span class="preset-pill" data-team="SEN" data-target="team2">SEN</span>
+                                <span class="preset-pill" data-team="FNC" data-target="team2">FNC</span>
+                                <span class="preset-pill" data-team="PRX" data-target="team2">PRX</span>
+                                <span class="preset-pill" data-team="LEV" data-target="team2">LEV</span>
+                                <span class="preset-pill" data-team="TH" data-target="team2">TH</span>
+                                <span class="preset-pill" data-team="EDG" data-target="team2">EDG</span>
+                                <span class="preset-pill" data-team="GEN" data-target="team2">GEN</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Match Format & Map Flow Editor -->
+            <section class="card">
+                <div class="card-header">
+                    <div class="card-title">
+                        <span>🗺 Match Format & Map Schedule</span>
+                    </div>
+                    <div style="width: 140px;">
+                        <select id="match-format" class="form-control" style="padding: 6px 10px; font-weight: 700;">
+                            <option value="bo1">Best of 1 (BO1)</option>
+                            <option value="bo3" selected>Best of 3 (BO3)</option>
+                            <option value="bo5">Best of 5 (BO5)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Map Slots Editor Container -->
+                <div class="map-flow-list" id="map-flow-list">
+                    <!-- POPULATED DYNAMICALLY BY APP.JS -->
+                </div>
+            </section>
+
+        </div>
+
+        <!-- OBS Source Integration Box -->
+        <div class="obs-info-box">
+            <div class="obs-info-text">
+                <strong>💡 OBS Studio & Streamlabs Browser Source:</strong>
+                <div>Add a Browser Source with local URL below. Recommended Width: <strong>1200px</strong>, Height: <strong>100px</strong>.</div>
+            </div>
+            <div class="url-copy-input">
+                <input type="text" id="overlay-url-input" class="form-control" readonly value="">
+            </div>
+        </div>
+
+    </main>
+</body>
+</html>
