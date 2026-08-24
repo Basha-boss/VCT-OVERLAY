@@ -1,25 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,700&family=Rajdhani:wght@500;600;700;800&display=swap');
 
 :root {
-    --map_select_dark: rgba(20, 24, 34, 0.45);
-    --map_select_light: rgba(48, 56, 76, 0.35);
-    --map_select_light_trans: rgba(48, 56, 76, 0.05);
+    --map_select_dark: #1b1c20;
+    --map_select_light: #343740;
+    --map_select_light_trans: #34374000;
     --vct_red: #ff4655;
-    --vct_red_glow: rgba(255, 70, 85, 0.4);
     --vct_cyan: #00f0ff;
-    --vct_cyan_glow: rgba(0, 240, 255, 0.35);
     --vct_gold: #e5b352;
-    --vct_gold_glow: rgba(229, 179, 82, 0.35);
     --overlay_green: #84f1cf;
     --overlay_trans_green: #366c61;
     --overlay_red: #bf5460;
     --overlay_trans_red: #6a323b;
-    --bg_dark: #08090d;
-    --card_bg: rgba(18, 22, 32, 0.5);
-    --card_border: rgba(255, 255, 255, 0.12);
-    --glass_highlight: rgba(255, 255, 255, 0.2);
+    --bg_dark: #0f1117;
+    --card_bg: #141722;
+    --card_border: #242836;
     --text_primary: #ffffff;
-    --text_secondary: #a2a8ba;
+    --text_secondary: #a0a6b8;
     --accent: #ff4655;
 }
 
@@ -32,11 +28,6 @@
 body {
     font-family: 'Montserrat', sans-serif;
     background-color: var(--bg_dark);
-    background-image: 
-        radial-gradient(circle at 15% 15%, rgba(255, 70, 85, 0.08) 0%, transparent 40%),
-        radial-gradient(circle at 85% 85%, rgba(0, 240, 255, 0.06) 0%, transparent 45%),
-        radial-gradient(circle at 50% 50%, rgba(20, 25, 38, 0.5) 0%, transparent 80%);
-    background-attachment: fixed;
     color: var(--text_primary);
     min-height: 100vh;
     overflow-x: hidden;
@@ -53,15 +44,13 @@ body.overlay-mode {
 
 /* App Header */
 .app-header {
-    background: rgba(13, 15, 22, 0.75);
-    backdrop-filter: blur(16px) saturate(180%);
-    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    background: #141722;
     border-bottom: 1px solid var(--card_border);
     padding: 16px 32px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5), inset 0 -1px 0 rgba(255, 255, 255, 0.05);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
     position: sticky;
     top: 0;
     z-index: 100;
@@ -76,7 +65,7 @@ body.overlay-mode {
 .brand-logo {
     width: 38px;
     height: 38px;
-    background: linear-gradient(135deg, #ff4655 0%, #c01b2a 100%);
+    background: var(--vct_red);
     clip-path: polygon(20% 0%, 100% 0%, 80% 100%, 0% 100%);
     display: flex;
     align-items: center;
@@ -84,8 +73,7 @@ body.overlay-mode {
     font-weight: 900;
     font-size: 20px;
     color: #fff;
-    box-shadow: 0 0 15px rgba(255, 70, 85, 0.5);
-    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    box-shadow: 0 0 12px rgba(255, 70, 85, 0.4);
 }
 
 .brand-title h1 {
@@ -95,7 +83,6 @@ body.overlay-mode {
     letter-spacing: 1.5px;
     text-transform: uppercase;
     color: #fff;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
 }
 
 .brand-title p {
@@ -119,28 +106,15 @@ body.overlay-mode {
     margin: 0 auto;
 }
 
-/* Glassmorphism Section Card Base */
+/* Solid Section Card Base */
 .card {
     background: var(--card_bg);
-    backdrop-filter: blur(16px) saturate(180%);
-    -webkit-backdrop-filter: blur(16px) saturate(180%);
     border: 1px solid var(--card_border);
-    border-radius: 12px;
+    border-radius: 8px;
     padding: 22px;
-    box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.4), inset 0 1px 0 0 var(--glass_highlight);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
     position: relative;
     overflow: hidden;
-}
-
-.card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.2) 50%, transparent 100%);
-    pointer-events: none;
 }
 
 .card-header {
@@ -167,15 +141,12 @@ body.overlay-mode {
 .card-title i {
     color: var(--vct_red);
     font-style: normal;
-    text-shadow: 0 0 8px var(--vct_red_glow);
 }
 
 /* Live Preview Stage Card */
 .preview-stage-card {
     border: 1px solid rgba(255, 70, 85, 0.35);
-    background: linear-gradient(135deg, rgba(21, 24, 35, 0.75) 0%, rgba(28, 32, 46, 0.65) 100%);
-    backdrop-filter: blur(16px) saturate(180%);
-    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    background: #121520;
     position: relative;
     overflow: hidden;
 }
@@ -187,17 +158,15 @@ body.overlay-mode {
     left: 0;
     width: 4px;
     height: 100%;
-    background: linear-gradient(180deg, var(--vct_red) 0%, rgba(255, 70, 85, 0.2) 100%);
-    box-shadow: 0 0 10px var(--vct_red);
+    background: var(--vct_red);
 }
 
 .preview-box {
-    background: rgba(8, 9, 13, 0.7);
+    background: #08090d;
     background-image: 
-        radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 0),
-        linear-gradient(to right, rgba(255, 70, 85, 0.04) 1px, transparent 1px);
+        radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 0),
+        linear-gradient(to right, rgba(255, 70, 85, 0.03) 1px, transparent 1px);
     background-size: 20px 20px, 100px 100px;
-    backdrop-filter: blur(10px);
     border-radius: 8px;
     padding: 45px 30px;
     min-height: 170px;
@@ -206,8 +175,7 @@ body.overlay-mode {
     align-items: flex-start;
     justify-content: center;
     position: relative;
-    border: 1px dashed rgba(255, 255, 255, 0.15);
-    box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.6);
+    border: 1px dashed rgba(255, 255, 255, 0.12);
 }
 
 .preview-badge {
@@ -218,17 +186,15 @@ body.overlay-mode {
     font-weight: 700;
     letter-spacing: 1px;
     text-transform: uppercase;
-    background: rgba(255, 70, 85, 0.25);
-    backdrop-filter: blur(6px);
+    background: rgba(255, 70, 85, 0.2);
     color: #ff6b78;
     padding: 4px 10px;
     border-radius: 4px;
-    border: 1px solid rgba(255, 70, 85, 0.5);
-    box-shadow: 0 0 10px rgba(255, 70, 85, 0.2);
+    border: 1px solid rgba(255, 70, 85, 0.4);
 }
 
 /* ========================================================
-   VCT Schedule Glassy Overlay Banner Component
+   VCT Schedule Overlay Banner Component
    ======================================================== */
 .vct-schedule-wrapper {
     display: flex;
@@ -245,7 +211,7 @@ body.overlay-mode {
     display: flex;
     align-items: center;
     position: relative;
-    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.6));
+    filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.6));
 }
 
 .map-select-information-container {
@@ -257,8 +223,6 @@ body.overlay-mode {
     font-weight: 700;
     letter-spacing: 0.8px;
     background: linear-gradient(90deg, #16171d 0%, #2f333f 80%, #3c4150 100%);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
     margin-right: -22px;
     display: flex;
     align-items: center;
@@ -279,7 +243,7 @@ body.overlay-mode {
     left: 0;
     right: 0;
     height: 45%;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0.01) 100%);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.01) 100%);
     pointer-events: none;
 }
 
@@ -297,7 +261,7 @@ body.overlay-mode {
     margin-right: 0px !important;
 }
 
-/* Glassy Map Slot Status Themes */
+/* Map Slot Status Themes */
 .map-select-information-container.status-current {
     background: linear-gradient(90deg, #16171d 0%, #2f333f 80%, #3c4150 100%);
     box-shadow: inset 0 1.5px 0 0 rgba(255, 255, 255, 0.85), 0 0 10px rgba(255, 255, 255, 0.25);
@@ -345,30 +309,29 @@ body.overlay-mode {
     text-shadow: 0 0 8px rgba(255, 255, 255, 0.9);
 }
 
-/* Glassy Team Logo Badge */
+/* High-Contrast Readable Team Logo Badge */
 .team-select-image {
     aspect-ratio: 1;
-    height: 18px;
-    width: 18px;
+    height: 22px;
+    width: 22px;
     object-fit: contain;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.12);
-    padding: 1px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: #ffffff;
+    padding: 2px;
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6), inset 0 0 0 1px rgba(0, 0, 0, 0.15);
+    filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.5));
 }
 
 .score-badge {
     font-weight: 800;
     color: #ffffff;
-    background: rgba(0, 0, 0, 0.55);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    background: rgba(0, 0, 0, 0.6);
     padding: 2px 8px;
     border-radius: 10px;
     font-size: 12px;
     letter-spacing: 1px;
     border: 1px solid rgba(255, 255, 255, 0.15);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 .picker-tag {
@@ -377,21 +340,18 @@ body.overlay-mode {
     padding: 2px 6px;
     border-radius: 4px;
     text-transform: uppercase;
-    backdrop-filter: blur(4px);
 }
 
 .picker-t1 {
     background: rgba(0, 240, 255, 0.2);
     color: var(--vct_cyan);
     border: 1px solid rgba(0, 240, 255, 0.5);
-    box-shadow: 0 0 8px rgba(0, 240, 255, 0.2);
 }
 
 .picker-t2 {
     background: rgba(255, 70, 85, 0.2);
     color: var(--vct_red);
     border: 1px solid rgba(255, 70, 85, 0.5);
-    box-shadow: 0 0 8px rgba(255, 70, 85, 0.2);
 }
 
 /* Control Panel Grid */
@@ -407,7 +367,7 @@ body.overlay-mode {
     }
 }
 
-/* Form Controls - Glassy */
+/* Form Controls */
 .form-group {
     margin-bottom: 15px;
 }
@@ -425,23 +385,19 @@ body.overlay-mode {
 .form-control {
     width: 100%;
     padding: 10px 14px;
-    background: rgba(10, 12, 18, 0.65);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    background: #090b10;
     border: 1px solid var(--card_border);
-    border-radius: 8px;
+    border-radius: 6px;
     color: #fff;
     font-family: inherit;
     font-size: 14px;
     transition: all 0.2s ease;
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .form-control:focus {
     outline: none;
     border-color: var(--vct_red);
-    background: rgba(15, 18, 28, 0.85);
-    box-shadow: inset 0 2px 4px rgba(0,0,0,0.3), 0 0 12px rgba(255, 70, 85, 0.35);
+    box-shadow: 0 0 0 2px rgba(255, 70, 85, 0.2);
 }
 
 select.form-control {
@@ -453,85 +409,68 @@ select.form-control option {
     color: #fff;
 }
 
-/* Glassy Buttons */
+/* Solid Buttons */
 .btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
-    padding: 11px 20px;
+    padding: 10px 18px;
     font-family: 'Rajdhani', sans-serif;
     font-weight: 700;
     font-size: 15px;
     text-transform: uppercase;
     letter-spacing: 1px;
-    border-radius: 8px;
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
     cursor: pointer;
-    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: all 0.2s ease;
     position: relative;
-    overflow: hidden;
-}
-
-.btn::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 50%;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.02) 100%);
-    pointer-events: none;
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, #ff4655 0%, #d82333 100%);
+    background: var(--vct_red);
     color: #fff;
-    box-shadow: 0 4px 15px rgba(255, 70, 85, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3);
-    border-color: rgba(255, 120, 130, 0.4);
+    box-shadow: 0 4px 12px rgba(255, 70, 85, 0.3);
+    border-color: rgba(255, 70, 85, 0.5);
 }
 
 .btn-primary:hover {
-    background: linear-gradient(135deg, #ff5967 0%, #e62e3e 100%);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 22px rgba(255, 70, 85, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    background: #e03e4d;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(255, 70, 85, 0.4);
 }
 
 .btn-secondary {
-    background: rgba(30, 36, 50, 0.6);
-    backdrop-filter: blur(8px);
+    background: #202432;
     color: var(--text_primary);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .btn-secondary:hover {
-    background: rgba(45, 54, 75, 0.75);
-    border-color: rgba(255, 255, 255, 0.25);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    background: #2a3042;
+    border-color: rgba(255, 255, 255, 0.22);
+    transform: translateY(-1px);
 }
 
 .btn-success {
-    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    background: #10b981;
     color: #fff;
     box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
 }
 
 .btn-success:hover {
-    background: linear-gradient(135deg, #34d399 0%, #047857 100%);
-    transform: translateY(-1px);
+    background: #059669;
 }
 
 .btn-danger {
-    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    background: #ef4444;
     color: #fff;
     box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
 }
 
 .btn-danger:hover {
-    background: linear-gradient(135deg, #f87171 0%, #b91c1c 100%);
-    transform: translateY(-1px);
+    background: #dc2626;
 }
 
 .btn-sm {
@@ -545,7 +484,7 @@ select.form-control option {
     border-radius: 6px;
 }
 
-/* Team Setup Box - Glassy */
+/* Team Setup Box */
 .team-setup-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -553,13 +492,10 @@ select.form-control option {
 }
 
 .team-box {
-    background: rgba(12, 14, 22, 0.55);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    background: #0d0f17;
     border: 1px solid var(--card_border);
-    border-radius: 10px;
+    border-radius: 8px;
     padding: 16px;
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
 .team-header {
@@ -570,15 +506,14 @@ select.form-control option {
 }
 
 .team-preview-logo {
-    width: 40px;
-    height: 40px;
+    width: 42px;
+    height: 42px;
     object-fit: contain;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(6px);
-    padding: 4px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    background: #ffffff;
+    padding: 3px;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
 }
 
 .preset-pills {
@@ -592,22 +527,18 @@ select.form-control option {
     font-size: 11px;
     font-weight: 700;
     padding: 4px 9px;
-    background: rgba(255, 255, 255, 0.06);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: 6px;
-    color: #d0d5e5;
+    background: #1a1e2b;
+    border: 1px solid #282f42;
+    border-radius: 4px;
+    color: #c0c5d5;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all 0.15s ease;
 }
 
 .preset-pill:hover {
     background: var(--vct_red);
     color: #fff;
     border-color: var(--vct_red);
-    box-shadow: 0 0 10px var(--vct_red_glow);
-    transform: translateY(-1px);
 }
 
 /* Map Flow Table / Editor */
@@ -618,18 +549,15 @@ select.form-control option {
 }
 
 .map-slot-item {
-    background: rgba(12, 14, 22, 0.55);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    background: #0d0f17;
     border: 1px solid var(--card_border);
-    border-radius: 10px;
+    border-radius: 8px;
     padding: 14px 18px;
     display: grid;
     grid-template-columns: 35px 1.2fr 1fr 1.1fr 1.2fr auto;
     align-items: center;
     gap: 12px;
-    transition: all 0.25s ease;
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    transition: all 0.2s ease;
 }
 
 @media (max-width: 900px) {
@@ -641,8 +569,8 @@ select.form-control option {
 
 .map-slot-item.active-slot {
     border-color: rgba(255, 70, 85, 0.6);
-    background: rgba(255, 70, 85, 0.08);
-    box-shadow: 0 0 15px rgba(255, 70, 85, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    background: rgba(255, 70, 85, 0.05);
+    box-shadow: 0 0 12px rgba(255, 70, 85, 0.15);
 }
 
 .slot-number {
@@ -651,7 +579,6 @@ select.form-control option {
     font-size: 20px;
     color: var(--vct_red);
     text-align: center;
-    text-shadow: 0 0 8px var(--vct_red_glow);
 }
 
 .score-inputs {
@@ -667,37 +594,33 @@ select.form-control option {
     font-weight: 700;
 }
 
-/* Quick Action Bar - Glassy */
+/* Quick Action Bar */
 .quick-actions-bar {
     display: flex;
     flex-wrap: wrap;
     gap: 12px;
     background: var(--card_bg);
-    backdrop-filter: blur(16px) saturate(180%);
-    -webkit-backdrop-filter: blur(16px) saturate(180%);
     padding: 16px 20px;
-    border-radius: 12px;
+    border-radius: 8px;
     border: 1px solid var(--card_border);
     margin-bottom: 5px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3), inset 0 1px 0 var(--glass_highlight);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
 }
 
-/* Modal / Toast Notifications - Glassy */
+/* Modal / Toast Notifications */
 .toast {
     position: fixed;
     bottom: 25px;
     right: 25px;
-    background: rgba(20, 25, 38, 0.85);
-    backdrop-filter: blur(16px) saturate(180%);
-    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    background: #181c28;
     color: #fff;
     border-left: 4px solid var(--vct_red);
-    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
     border-right: 1px solid rgba(255, 255, 255, 0.1);
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     padding: 14px 22px;
-    border-radius: 8px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 0 15px rgba(255, 70, 85, 0.2);
+    border-radius: 6px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     display: flex;
     align-items: center;
     gap: 10px;
@@ -710,19 +633,17 @@ select.form-control option {
     to { transform: translateX(0); opacity: 1; }
 }
 
-/* OBS Overlay Helper Banner - Glassy Cyan */
+/* OBS Overlay Helper Banner */
 .obs-info-box {
-    background: rgba(0, 240, 255, 0.06);
-    backdrop-filter: blur(12px) saturate(180%);
-    -webkit-backdrop-filter: blur(12px) saturate(180%);
-    border: 1px solid rgba(0, 240, 255, 0.25);
-    border-radius: 10px;
+    background: rgba(0, 240, 255, 0.05);
+    border: 1px solid rgba(0, 240, 255, 0.2);
+    border-radius: 8px;
     padding: 18px 22px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-top: 15px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
 }
 
 .obs-info-text {
@@ -737,11 +658,11 @@ select.form-control option {
 }
 
 .url-copy-input input {
-    background: rgba(6, 10, 16, 0.7);
-    backdrop-filter: blur(6px);
+    background: #06080d;
     color: #72e0ff;
     font-family: monospace;
     font-size: 12px;
     border: 1px solid rgba(0, 240, 255, 0.2);
 }
+
 
